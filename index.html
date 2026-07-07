@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXORA — Step Into Bold Style</title>
+  <meta name="description" content="Discover shoes that blend comfort, craftsmanship, and trendsetting design — made to move with you. Shop NEXORA's latest collection." />
+  <meta name="keywords" content="sneakers, shoes, fashion, NEXORA, bold style, comfort, craftsmanship" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/homepage.css" />
+</head>
+<body>
+
+  <!-- NAV (shared across all pages via assets/app.js renderNav()) -->
+  <div id="nav-root"></div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero" aria-label="Hero section">
+
+    <!-- LEFT -->
+    <div class="hero-left">
+      <div class="tag-pill">
+        <span class="pulse-dot"></span>
+        New Collection 2026
+      </div>
+
+      <h1 class="hero-headline">
+        <div class="headline-row">
+          <span>STEP</span>
+          <img
+            src="https://raw.githubusercontent.com/google/material-design-icons/master/png/maps/local_mall/materialicons/48dp/2x/baseline_local_mall_black_48dp.png"
+            alt=""
+            class="headline-shoe-img"
+            id="inline-shoe-img"
+            onerror="this.style.display='none'"
+          />
+          <span>INTO</span>
+        </div>
+        <div class="headline-row">BOLD STYLE.</div>
+      </h1>
+
+      <p class="hero-desc">
+        Discover shoes that blend comfort, craftsmanship, and trendsetting design &mdash; made to move with you.
+      </p>
+
+      <div class="cta-row">
+        <a href="plp.html" class="btn-shop" id="shop-now-btn" aria-label="Shop now">
+          <span class="btn-shop-text">Shop Now</span>
+          <div class="btn-shop-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#111625" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <div class="social-proof">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="1" aria-hidden="true">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span>4.9 Average Customer Rating</span>
+      </div>
+
+      <a class="hero-product-card" id="product-card-leather" href="pdp.html?id=air-core-pro" aria-label="Air Core Pro sneakers, $189.00">
+        <img
+          id="product-card-img"
+          alt="Model wearing the Air Core Pro sneaker"
+          class="hero-product-card-img"
+          loading="lazy"
+        />
+        <div class="hero-product-card-body">
+          <p class="hero-product-card-name">Air Core Pro</p>
+          <div class="hero-product-card-footer">
+            <span class="hero-product-card-price">$189.00</span>
+            <div class="hero-product-card-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="hero-right">
+      <div class="collage-wrap">
+        <div class="collage-blob" aria-hidden="true"></div>
+
+        <div class="sticker sticker--rainbow" aria-hidden="true">&#127752;</div>
+        <div class="sticker sticker--peace" aria-hidden="true">&#9996;&#65039;</div>
+        <div class="sticker sticker--cactus" aria-hidden="true">&#127807;</div>
+        <div class="sticker sticker--heart" aria-hidden="true">&#128151;</div>
+        <div class="sticker sticker--star" aria-hidden="true">&#11088;</div>
+
+        <img
+          id="hero-model-img"
+          alt="Stylish model on purple flower chair with rainbow sweater and white clog shoe"
+          class="collage-model"
+        />
+
+        <article class="testimonial-card" id="testimonial-card" aria-label="Customer testimonial">
+          <p class="testimonial-quote">
+            The most comfortable sneakers I&rsquo;ve ever owned &mdash; stylish enough for work and durable enough for weekend hikes.
+          </p>
+          <div class="testimonial-attr">
+            <div class="testimonial-avatar" aria-hidden="true">S</div>
+            <div>
+              <div class="testimonial-name">Sara M.</div>
+              <div class="testimonial-badge">Verified Buyer</div>
+            </div>
+          </div>
+        </article>
+
+        <div class="dots-decoration" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+
+
+  <!-- TICKER -->
+  <div class="ticker-wrap" aria-label="Brand announcements">
+    <div class="ticker-track" aria-hidden="true">
+      <div class="ticker-item"><span class="dot"></span>Free Shipping on Orders $75+</div>
+      <div class="ticker-item"><span class="dot"></span>New Arrivals Every Friday</div>
+      <div class="ticker-item"><span class="dot"></span>Sustainably Crafted Materials</div>
+      <div class="ticker-item"><span class="dot"></span>30-Day Easy Returns</div>
+      <div class="ticker-item"><span class="dot"></span>Members Get 15% Off</div>
+      <div class="ticker-item"><span class="dot"></span>Free Shipping on Orders $75+</div>
+      <div class="ticker-item"><span class="dot"></span>New Arrivals Every Friday</div>
+      <div class="ticker-item"><span class="dot"></span>Sustainably Crafted Materials</div>
+      <div class="ticker-item"><span class="dot"></span>30-Day Easy Returns</div>
+      <div class="ticker-item"><span class="dot"></span>Members Get 15% Off</div>
+    </div>
+  </div>
+
+
+  
+  <!-- SHOP BY CATEGORY -->
+  <section class="category-section" aria-label="Shop by Category">
+    <div class="category-header">
+      <span class="category-kicker">EXPLORE</span>
+      <h2 class="category-title">Shop by Category</h2>
+    </div>
+    <div class="category-grid">
+      <a href="plp.html?category=Running" class="category-card">
+        <img id="cat-img-1" alt="Running Styles" class="category-card-img" loading="lazy" />
+        <div class="category-card-overlay"></div>
+        <div class="category-card-content">
+          <h3 class="category-card-title">Running</h3>
+          <span class="category-card-count">14 styles</span>
+        </div>
+      </a>
+      <a href="plp.html?category=Street" class="category-card">
+        <img id="cat-img-2" alt="Street Styles" class="category-card-img" loading="lazy" />
+        <div class="category-card-overlay"></div>
+        <div class="category-card-content">
+          <h3 class="category-card-title">Street</h3>
+          <span class="category-card-count">22 styles</span>
+        </div>
+      </a>
+      <a href="plp.html?category=Lifestyle" class="category-card">
+        <img id="cat-img-3" alt="Lifestyle Styles" class="category-card-img" loading="lazy" />
+        <div class="category-card-overlay"></div>
+        <div class="category-card-content">
+          <h3 class="category-card-title">Lifestyle</h3>
+          <span class="category-card-count">18 styles</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+
+  <!-- WHY NEXORA (trust / USP section) -->
+  <section class="trust-section" aria-label="Why Shop Nexora">
+    <div class="category-header">
+      <span class="category-kicker">The Nexora Standard</span>
+      <h2 class="category-title">Why Shop With Us</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="trust-title">Free Worldwide Shipping</div>
+        <div class="trust-desc">Free delivery on every order over $75, no matter where you are.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        </div>
+        <div class="trust-title">30-Day Easy Returns</div>
+        <div class="trust-desc">Not the right fit? Send it back within 30 days, free of charge.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="trust-title">Authenticity Guaranteed</div>
+        <div class="trust-desc">Every pair is 100% authentic, inspected, and quality-checked.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <div class="trust-title">24/7 Customer Support</div>
+        <div class="trust-desc">Real humans, ready to help with sizing, orders, or anything else.</div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FEATURED STYLES -->
+  <section class="featured-section" id="products" aria-label="Featured Styles">
+    <div class="featured-header">
+      <div class="featured-left">
+        <span class="featured-kicker">Curated for you</span>
+        <h2 class="featured-title">Featured Styles</h2>
+      </div>
+      <div class="featured-right">
+        <a href="plp.html">View All &rarr;</a>
+      </div>
+    </div>
+    
+    <div class="product-grid">
+      <!-- Card 1 -->
+      <a href="pdp.html?id=air-core-pro" class="grid-card" data-id="air-core-pro">
+        <div class="grid-card-img-wrap">
+          <span class="grid-card-badge badge-yellow">Bestseller</span>
+          <button class="grid-card-like" data-id="air-core-pro" aria-label="Like Air Core Pro" onclick="event.preventDefault();event.stopPropagation();handleWish(this,'air-core-pro')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <img id="grid-img-1" alt="Air Core Pro" class="grid-card-img" loading="lazy" />
+        </div>
+        <div class="grid-card-info">
+          <div class="grid-card-text">
+            <h3 class="grid-card-name">Air Core Pro</h3>
+            <span class="grid-card-price">$189</span>
+          </div>
+          <button class="grid-card-btn" onclick="event.preventDefault();event.stopPropagation();quickAdd('air-core-pro')" aria-label="Add Air Core Pro to cart">Add +</button>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="pdp.html?id=urban-drift" class="grid-card" data-id="urban-drift">
+        <div class="grid-card-img-wrap" style="background:#D1D1D6;"> <!-- Fallback grey background like prompt -->
+          <span class="grid-card-badge badge-red">New</span>
+          <button class="grid-card-like" data-id="urban-drift" aria-label="Like Urban Drift" onclick="event.preventDefault();event.stopPropagation();handleWish(this,'urban-drift')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <img id="grid-img-2" alt="Urban Drift" class="grid-card-img" style="mix-blend-mode:normal;" loading="lazy" />
+        </div>
+        <div class="grid-card-info">
+          <div class="grid-card-text">
+            <h3 class="grid-card-name">Urban Drift</h3>
+            <span class="grid-card-price">$220</span>
+          </div>
+          <button class="grid-card-btn" onclick="event.preventDefault();event.stopPropagation();quickAdd('urban-drift')" aria-label="Add Urban Drift to cart">Add +</button>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="pdp.html?id=cloud-lite" class="grid-card" data-id="cloud-lite">
+        <div class="grid-card-img-wrap">
+          <span class="grid-card-badge badge-blue">Limited</span>
+          <button class="grid-card-like" data-id="cloud-lite" aria-label="Like Cloud Lite" onclick="event.preventDefault();event.stopPropagation();handleWish(this,'cloud-lite')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <img id="grid-img-3" alt="Cloud Lite" class="grid-card-img" loading="lazy" />
+        </div>
+        <div class="grid-card-info">
+          <div class="grid-card-text">
+            <h3 class="grid-card-name">Cloud Lite</h3>
+            <span class="grid-card-price">$155</span>
+          </div>
+          <button class="grid-card-btn" onclick="event.preventDefault();event.stopPropagation();quickAdd('cloud-lite')" aria-label="Add Cloud Lite to cart">Add +</button>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="pdp.html?id=retro-kick" class="grid-card" data-id="retro-kick">
+        <div class="grid-card-img-wrap">
+          <span class="grid-card-badge badge-white">Classic</span>
+          <button class="grid-card-like" data-id="retro-kick" aria-label="Like Retro Kick" onclick="event.preventDefault();event.stopPropagation();handleWish(this,'retro-kick')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <img id="grid-img-4" alt="Retro Kick" class="grid-card-img" style="mix-blend-mode:normal;" loading="lazy" />
+        </div>
+        <div class="grid-card-info">
+          <div class="grid-card-text">
+            <h3 class="grid-card-name">Retro Kick</h3>
+            <span class="grid-card-price">$175</span>
+          </div>
+          <button class="grid-card-btn" onclick="event.preventDefault();event.stopPropagation();quickAdd('retro-kick')" aria-label="Add Retro Kick to cart">Add +</button>
+        </div>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- OUR STORY (about teaser) -->
+  <section class="story-section" aria-label="Our Story">
+    <div class="story-container">
+      <div class="story-media">
+        <img id="story-img" alt="Velora Trail Edge sneaker, crafted with rugged premium materials" loading="lazy" />
+      </div>
+      <div>
+        <span class="category-kicker">Our Story</span>
+        <h2 class="story-title">Built By People Who<br>Actually Wear Them</h2>
+        <p class="story-desc">Nexora started in a small workshop with one idea: shoes should feel as good as they look. Today we design every silhouette in-house, test every material for durability, and ship every pair with the same obsessive care we started with.</p>
+        <div class="story-stats">
+          <div>
+            <div class="story-stat-num">2019</div>
+            <div class="story-stat-label">Founded</div>
+          </div>
+          <div>
+            <div class="story-stat-num">6</div>
+            <div class="story-stat-label">Shoe Families</div>
+          </div>
+          <div>
+            <div class="story-stat-num">40k+</div>
+            <div class="story-stat-label">Happy Runners</div>
+          </div>
+        </div>
+        <a href="about.html" class="story-btn">
+          Learn Our Story
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- NEW ARRIVALS (4 more shoe types: running variant, trail, court, knit) -->
+  <section class="featured-section" id="new-arrivals" aria-label="New Arrivals">
+    <div class="featured-header">
+      <div class="featured-left">
+        <span class="featured-kicker">Just Dropped</span>
+        <h2 class="featured-title">New Arrivals</h2>
+      </div>
+      <div class="featured-right">
+        <a href="plp.html">View All &rarr;</a>
+      </div>
+    </div>
+
+    <div class="product-grid">
+      <a href="pdp.html?id=velora-run-x1" class="grid-card" data-id="velora-run-x1">
+        <div class="grid-card-img-wrap">
+          <span class="grid-card-badge badge-blue">New</span>
+          <button class="grid-card-like" data-id="velora-run-x1" aria-label="Like Velora Run X1" onclick="event.preventDefault();event.stopPropagation();handleWish(this,'velora-run-x1')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <img id="new-img-1" alt="Velora Run X1" class="grid-card-img" loading="lazy" />
+        </div>
+        <div class="grid-card-info">
+          <div class="grid-card-text">
+            <h3 class="grid-card-name">Velora Run X1</h3>
+            <span class="grid-card-price">$210</span>
+          </div>
+          <button class="grid-card-btn" onclick="event.preventDefault();event.stopPropagation();quickAdd('velora-run-x1')" aria-label="Add Velora Run X1 to cart">Add +</button>
+        </div>
+      </a>
+
+      <a href="pdp.html?id=velora-trail-edge" class="grid-card" data-id="velora-trail-edge">
+        <div class="grid-card-img-wrap">
+          <span class="grid-card-badge badge-white">Trail</span>
+          <button class="grid-card-like" data-id="velora-trail-edge" aria-label="Like Velora Trail Edge" onclick="event.preventDefault();event.stopPropagation();handleWish(this,'velora-trail-edge')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <img id="new-img-2" alt="Velora Trail Edge" class="grid-card-img" loading="lazy" />
+        </div>
+        <div class="grid-card-info">
+          <div class="grid-card-text">
+            <h3 class="grid-card-name">Velora Trail Edge</h3>
+            <span class="grid-card-price">$235</span>
+          </div>
+          <button class="grid-card-btn" onclick="event.preventDefault();event.stopPropagation();quickAdd('velora-trail-edge')" aria-label="Add Velora Trail Edge to cart">Add +</button>
+        </div>
+      </a>
+
+      <a href="pdp.html?id=velora-court-pro" class="grid-card" data-id="velora-court-pro">
+        <div class="grid-card-img-wrap">
+          <span class="grid-card-badge badge-red">New</span>
+          <button class="grid-card-like" data-id="velora-court-pro" aria-label="Like Velora Court Pro" onclick="event.preventDefault();event.stopPropagation();handleWish(this,'velora-court-pro')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <img id="new-img-3" alt="Velora Court Pro" class="grid-card-img" loading="lazy" />
+        </div>
+        <div class="grid-card-info">
+          <div class="grid-card-text">
+            <h3 class="grid-card-name">Velora Court Pro</h3>
+            <span class="grid-card-price">$165</span>
+          </div>
+          <button class="grid-card-btn" onclick="event.preventDefault();event.stopPropagation();quickAdd('velora-court-pro')" aria-label="Add Velora Court Pro to cart">Add +</button>
+        </div>
+      </a>
+
+      <a href="pdp.html?id=velora-knit-air" class="grid-card" data-id="velora-knit-air">
+        <div class="grid-card-img-wrap">
+          <span class="grid-card-badge badge-yellow">Trending</span>
+          <button class="grid-card-like" data-id="velora-knit-air" aria-label="Like Velora Knit Air" onclick="event.preventDefault();event.stopPropagation();handleWish(this,'velora-knit-air')">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </button>
+          <img id="new-img-4" alt="Velora Knit Air" class="grid-card-img" loading="lazy" />
+        </div>
+        <div class="grid-card-info">
+          <div class="grid-card-text">
+            <h3 class="grid-card-name">Velora Knit Air</h3>
+            <span class="grid-card-price">$145</span>
+          </div>
+          <button class="grid-card-btn" onclick="event.preventDefault();event.stopPropagation();quickAdd('velora-knit-air')" aria-label="Add Velora Knit Air to cart">Add +</button>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  
+
+  <!-- REVIEWS & SIZE GUIDE -->
+  <section class="info-section" id="about" aria-label="Customer Reviews and Size Guide">
+    <div class="info-layout">
+      <!-- LEFT: REVIEWS -->
+      <div class="info-column">
+        <div class="info-header info-header-row">
+          <div>
+            <span class="info-kicker">CUSTOMER LOVE</span>
+            <h2 class="info-title">What People Say</h2>
+          </div>
+          <div class="rating-badge">
+            <span class="rating-score">4.9</span>
+            <div class="rating-stars-col">
+              <div class="rating-stars">
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              </div>
+              <span class="rating-count">12,400+ reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews-stack">
+          <!-- Card 1 -->
+          <div class="review-card">
+            <div class="review-avatar" style="background:#E8D8F8; color:var(--purple);">J</div>
+            <div class="review-content">
+              <div class="review-author-row">
+                <span class="review-name">Jordan K.</span>
+                <div class="rating-stars" style="width:70px;">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <p class="review-text">"Best sneakers I've bought. Cushioning is insane and they look great."</p>
+              <span class="review-tag">Air Core Pro</span>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="review-card">
+            <div class="review-avatar" style="background:#FFE4E6; color:#E14B1D;">P</div>
+            <div class="review-content">
+              <div class="review-author-row">
+                <span class="review-name">Priya S.</span>
+                <div class="rating-stars" style="width:70px;">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <p class="review-text">"Stylish enough for a night out but comfy for all-day wear."</p>
+              <span class="review-tag">Urban Drift</span>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="review-card">
+            <div class="review-avatar" style="background:#E0F2FE; color:#0284C7;">M</div>
+            <div class="review-content">
+              <div class="review-author-row">
+                <span class="review-name">Marcus T.</span>
+                <div class="rating-stars" style="width:70px;">
+                  <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <p class="review-text">"Cloud Lite lived up to its name. Super light, great fit."</p>
+              <span class="review-tag">Cloud Lite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: SIZE GUIDE -->
+      <div class="info-column">
+        <div class="info-header">
+          <span class="info-kicker">FIT PERFECTLY</span>
+          <h2 class="info-title">Size Guide</h2>
+        </div>
+        
+        <table class="size-table">
+          <thead>
+            <tr>
+              <th>US</th><th>EU</th><th>UK</th><th>CM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>US 6</td><td>EU 39</td><td>UK 5.5</td><td>24cm</td></tr>
+            <tr><td>US 7</td><td>EU 40</td><td>UK 6.5</td><td>25cm</td></tr>
+            <tr><td>US 8</td><td>EU 41</td><td>UK 7.5</td><td>26cm</td></tr>
+            <tr><td>US 9</td><td>EU 42</td><td>UK 8.5</td><td>27cm</td></tr>
+            <tr><td>US 10</td><td>EU 43</td><td>UK 9.5</td><td>28cm</td></tr>
+            <tr><td>US 11</td><td>EU 44</td><td>UK 10.5</td><td>29cm</td></tr>
+          </tbody>
+        </table>
+
+        <div class="fit-tips">
+          <div class="tip-row">
+            <div class="tip-icon">
+              <!-- Ruler icon -->
+              <svg viewBox="0 0 24 24"><path d="M21 12H3m3-3v6m6-6v6m6-6v6"/></svg>
+            </div>
+            <div class="tip-text">
+              <span class="tip-title">Measure at Night</span>
+              <span class="tip-desc">Feet swell throughout the day.</span>
+            </div>
+          </div>
+          <div class="tip-row">
+            <div class="tip-icon">
+              <!-- Layers icon -->
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+            <div class="tip-text">
+              <span class="tip-title">Consider Thick Socks</span>
+              <span class="tip-desc">Size up half a size for thick socks.</span>
+            </div>
+          </div>
+          <div class="tip-row">
+            <div class="tip-icon">
+              <!-- Double arrow icon -->
+              <svg viewBox="0 0 24 24"><line x1="2" y1="12" x2="22" y2="12"/><polyline points="6 8 2 12 6 16"/><polyline points="18 8 22 12 18 16"/></svg>
+            </div>
+            <div class="tip-text">
+              <span class="tip-title">Thumb Width Gap</span>
+              <span class="tip-desc">Leave a thumb's width at the toe.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section class="promo-section" aria-label="Limited Time Offer">
+    <div class="promo-container">
+      <div class="promo-left">
+        <span class="promo-badge">Limited Time</span>
+        <h2 class="promo-title">UP TO 40% OFF</h2>
+        <p class="promo-desc">On selected styles &mdash; ends Sunday, June 29</p>
+        <a href="plp.html" class="promo-btn">
+          Grab the Deal 
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+      <div class="promo-right">
+        <img id="promo-img" alt="Colorful sneakers floating in space" class="promo-image" loading="lazy" />
+        <div class="promo-countdown" aria-label="Sale ends in 2 days, 14 hours, 38 minutes">
+          <div class="timer-box" aria-hidden="true">
+            <span class="timer-num">02</span>
+            <span class="timer-label">Days</span>
+          </div>
+          <div class="timer-box" aria-hidden="true">
+            <span class="timer-num">14</span>
+            <span class="timer-label">Hours</span>
+          </div>
+          <div class="timer-box" aria-hidden="true">
+            <span class="timer-num">38</span>
+            <span class="timer-label">Mins</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (shared across all pages via assets/app.js renderFooter()) -->
+  <div id="footer-root"></div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    // Mount shared nav + footer, wire up hamburger/cart badge
+    mountLayout('home');
+
+    // Load generated images from assets folder
+    document.getElementById('inline-shoe-img').src = 'assets/air_core_pro_realistic.png';
+    document.getElementById('hero-model-img').src = 'assets/hero_model_new.png';
+    document.getElementById('product-card-img').src = 'assets/product_card_model.jpg';
+
+    // Category images
+    document.getElementById('cat-img-1').src = 'assets/velora_run_x1_realistic.png';
+    document.getElementById('cat-img-2').src = 'assets/urban_drift_realistic.png';
+    document.getElementById('cat-img-3').src = 'assets/cloud_lite_realistic.png';
+
+    // Grid images
+    document.getElementById('grid-img-1').src = 'assets/air_core_pro_realistic.png';
+    document.getElementById('grid-img-2').src = 'assets/urban_drift_realistic.png';
+    document.getElementById('grid-img-3').src = 'assets/cloud_lite_realistic.png';
+    document.getElementById('grid-img-4').src = 'assets/retro_kick_realistic.png';
+
+    // New Arrivals images
+    document.getElementById('new-img-1').src = 'assets/velora_run_x1_realistic.png';
+    document.getElementById('new-img-2').src = 'assets/velora_trail_edge_realistic.png';
+    document.getElementById('new-img-3').src = 'assets/velora_court_pro_realistic.png';
+    document.getElementById('new-img-4').src = 'assets/velora_knit_air_realistic.png';
+
+    // Our Story image
+    document.getElementById('story-img').src = 'assets/velora_trail_edge_realistic.png';
+
+    // Promo image
+    document.getElementById('promo-img').src = 'assets/promo_collage_realistic.png';
+
+    // Reflect saved wishlist state on the featured product cards
+    document.querySelectorAll('.grid-card-like[data-id]').forEach(btn => {
+      if (isWishlisted(btn.dataset.id)) btn.classList.add('active');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — NEXORA</title>
+  <meta name="description" content="Thank you for your order! Here's your NEXORA order confirmation and delivery timeline." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="confirmation-page">
+
+  <div id="nav-root"></div>
+
+  <div class="confirmation-main" id="confirmation-main">
+    <!-- Rendered by JS -->
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    document.getElementById('nav-root').innerHTML = renderNav('plp');
+    document.getElementById('footer-root').innerHTML = renderFooter();
+    initNav();
+
+    const order = getOrder();
+    const main = document.getElementById('confirmation-main');
+
+    if (!order) {
+      // Nobody should land here without a just-placed order.
+      main.innerHTML = `
+        <div style="text-align:center;padding:40px 0">
+          <h1 class="confirmation-title" style="font-size:36px">No Recent Order Found</h1>
+          <p class="confirmation-subtitle">Looks like there's no order to confirm. Head back to the shop to find your next favorite pair.</p>
+          <div class="confirmation-actions">
+            <a href="plp.html" class="btn-primary">Go to Shop</a>
+          </div>
+        </div>`;
+    } else {
+      const placedDate = new Date(order.date);
+      const estArrival = new Date(placedDate.getTime() + 5 * 24 * 60 * 60 * 1000);
+      const dateFmt = (d) => d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+      main.innerHTML = `
+        <div class="confirmation-check">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h1 class="confirmation-title">Thank You!</h1>
+        <p class="confirmation-subtitle">
+          Your order has been placed and is being prepared. A confirmation has been sent to ${order.shipping.email || 'your email'}.
+        </p>
+        <div style="text-align:center;margin-bottom:40px">
+          <span class="confirmation-order-num">Order #${order.orderNumber}</span>
+        </div>
+
+        <div class="confirmation-section">
+          <div class="confirmation-section-title">Order Summary</div>
+          <div class="order-summary-items">
+            ${order.items.map(item => `
+              <div class="order-conf-item">
+                <img src="${item.image}" alt="${item.name}" class="order-conf-img" onerror="this.style.background='#F5F5F7'">
+                <div>
+                  <div class="order-conf-name">${item.name}</div>
+                  <div class="order-conf-variant">${item.colorName} · Size ${item.size} · Qty ${item.qty}</div>
+                </div>
+                <span class="order-conf-price">${formatPrice(item.price * item.qty)}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div style="border-top:1px solid var(--gray-border);margin-top:20px;padding-top:16px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-text)">Subtotal</span><span>${formatPrice(order.totals.subtotal)}</span></div>
+            ${order.totals.discount > 0 ? `<div style="display:flex;justify-content:space-between"><span style="color:var(--gray-text)">Discount</span><span>−${formatPrice(order.totals.discount)}</span></div>` : ''}
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-text)">Shipping</span><span>${order.totals.shipping === 0 ? 'FREE' : formatPrice(order.totals.shipping)}</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--gray-text)">Tax</span><span>${formatPrice(order.totals.tax)}</span></div>
+            <div style="display:flex;justify-content:space-between;font-weight:800;font-size:16px;padding-top:8px;border-top:1px solid var(--gray-border)"><span>Total</span><span>${formatPrice(order.totals.total)}</span></div>
+          </div>
+        </div>
+
+        <div class="confirmation-section">
+          <div class="confirmation-section-title">Shipping To</div>
+          <div style="font-size:14px;color:var(--gray-dark);line-height:1.7">
+            ${order.shipping.name}<br>
+            ${order.shipping.address}<br>
+            ${order.shipping.city}, ${order.shipping.state} ${order.shipping.zip}<br>
+            Card ending in ${order.paymentLast4 || '••••'}
+          </div>
+        </div>
+
+        <div class="confirmation-section">
+          <div class="confirmation-section-title">Delivery Timeline</div>
+          <div class="timeline">
+            <div class="timeline-step">
+              <div class="timeline-icon-wrap">
+                <div class="timeline-icon" style="background:var(--success);color:var(--white)">✓</div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">Order Placed</div>
+                <div class="timeline-desc">${dateFmt(placedDate)}</div>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-icon-wrap">
+                <div class="timeline-icon" style="background:var(--gray-border);color:var(--gray-dark)">📦</div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">Preparing Your Order</div>
+                <div class="timeline-desc">We're picking and packing your items</div>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-icon-wrap">
+                <div class="timeline-icon" style="background:var(--gray-border);color:var(--gray-dark)">🚚</div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">Shipped</div>
+                <div class="timeline-desc">Tracking info will be emailed to you</div>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-icon-wrap">
+                <div class="timeline-icon" style="background:var(--gray-border);color:var(--gray-dark)">🏠</div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-title">Estimated Delivery</div>
+                <div class="timeline-desc">${dateFmt(estArrival)}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="retention-hook">
+          <h3>Stay In The Loop</h3>
+          <p>Get early access to new drops, restocks, and member-only pricing.</p>
+          <form class="retention-form" onsubmit="return handleSubscribe(event)">
+            <input type="email" class="retention-input" placeholder="your@email.com" required />
+            <button type="submit" class="retention-btn">Subscribe</button>
+          </form>
+        </div>
+
+        <div class="confirmation-actions">
+          <a href="plp.html" class="btn-primary">Continue Shopping</a>
+          <a href="index.html" class="btn-outline" style="display:inline-flex;align-items:center">Back to Home</a>
+        </div>
+      `;
+    }
+
+    function handleSubscribe(e) {
+      e.preventDefault();
+      showToast('Thanks for subscribing!', 'success');
+      e.target.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>

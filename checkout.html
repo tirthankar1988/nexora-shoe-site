@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — NEXORA</title>
+  <meta name="description" content="Secure checkout for your NEXORA order." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="checkout-page">
+
+  <div id="nav-root"></div>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span class="sep">/</span>
+    <a href="cart.html">Cart</a><span class="sep">/</span>
+    <span class="current">Checkout</span>
+  </div>
+
+  <div class="checkout-main">
+    <!-- LEFT: Steps + form sections -->
+    <div>
+      <div class="checkout-steps" id="checkout-steps">
+        <div class="checkout-step active" data-step="1"><span class="checkout-step-num">1</span><span>Shipping</span></div>
+        <div class="checkout-step-sep"></div>
+        <div class="checkout-step" data-step="2"><span class="checkout-step-num">2</span><span>Payment</span></div>
+        <div class="checkout-step-sep"></div>
+        <div class="checkout-step" data-step="3"><span class="checkout-step-num">3</span><span>Review</span></div>
+      </div>
+
+      <!-- STEP 1: Shipping -->
+      <div class="checkout-section active" id="section-1">
+        <div class="checkout-section-title">📦 Shipping Information</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ship-name">Full Name</label>
+            <input class="form-input" id="ship-name" placeholder="Jamie Rivera" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="ship-email">Email</label>
+            <input class="form-input" id="ship-email" type="email" placeholder="jamie@email.com" autocomplete="email" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ship-address">Street Address</label>
+          <input class="form-input" id="ship-address" placeholder="123 Market Street" autocomplete="street-address" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ship-city">City</label>
+            <input class="form-input" id="ship-city" placeholder="San Francisco" autocomplete="address-level2" />
+          </div>
+          <div class="form-group">
+            <label for="ship-state">State</label>
+            <input class="form-input" id="ship-state" placeholder="CA" autocomplete="address-level1" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ship-zip">ZIP Code</label>
+            <input class="form-input" id="ship-zip" placeholder="94103" autocomplete="postal-code" />
+          </div>
+          <div class="form-group">
+            <label for="ship-phone">Phone</label>
+            <input class="form-input" id="ship-phone" type="tel" placeholder="(555) 123-4567" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="checkout-nav">
+          <a href="cart.html" class="btn-outline">Back to Cart</a>
+          <button type="button" class="btn-primary" onclick="goToStep(2)">Continue to Payment</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Payment -->
+      <div class="checkout-section" id="section-2">
+        <div class="checkout-section-title">💳 Payment Details</div>
+        <div class="payment-icons">
+          <span class="payment-icon">VISA</span>
+          <span class="payment-icon">MASTERCARD</span>
+          <span class="payment-icon">AMEX</span>
+        </div>
+        <div class="form-group">
+          <label for="pay-name">Name on Card</label>
+          <input class="form-input" id="pay-name" placeholder="Jamie Rivera" autocomplete="cc-name" />
+        </div>
+        <div class="form-group">
+          <label for="pay-card">Card Number</label>
+          <input class="form-input" id="pay-card" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" autocomplete="cc-number" oninput="formatCard(this)" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pay-expiry">Expiry (MM/YY)</label>
+            <input class="form-input" id="pay-expiry" inputmode="numeric" maxlength="5" placeholder="MM/YY" autocomplete="cc-exp" oninput="formatExpiry(this)" />
+          </div>
+          <div class="form-group">
+            <label for="pay-cvv">CVV</label>
+            <input class="form-input" id="pay-cvv" inputmode="numeric" maxlength="4" placeholder="123" autocomplete="cc-csc" oninput="formatCVV(this)" />
+          </div>
+        </div>
+        <div class="ssl-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Your payment information is encrypted and never stored.
+        </div>
+        <div class="checkout-nav">
+          <button type="button" class="btn-outline" onclick="goToStep(1)">Back</button>
+          <button type="button" class="btn-primary" onclick="goToStep(3)">Review Order</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Review -->
+      <div class="checkout-section" id="section-3">
+        <div class="checkout-section-title">✅ Review &amp; Place Order</div>
+        <div id="review-content"></div>
+        <div class="checkout-nav">
+          <button type="button" class="btn-outline" onclick="goToStep(2)">Back</button>
+          <button type="button" class="btn-primary btn-purple" id="place-order-btn" onclick="placeOrder()">Place Order</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Order summary -->
+    <div class="checkout-summary">
+      <div class="checkout-summary-toggle" id="summary-toggle" onclick="toggleSummary()">
+        <span>Order Summary — <span id="summary-toggle-total">$0.00</span></span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="summary-toggle-chevron"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <div class="checkout-summary-body" id="summary-body">
+        <div class="order-items-mini" id="order-items-mini"></div>
+        <div class="summary-lines" id="checkout-summary-lines"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    document.getElementById('nav-root').innerHTML = renderNav('plp');
+    document.getElementById('footer-root').innerHTML = renderFooter();
+    initNav();
+
+    const SHIPPING_THRESHOLD = 75;
+    const SHIPPING_FLAT = 8.99;
+    const TAX_RATE = 0.08;
+    const PROMO_KEY = 'nexora_promo_v1';
+
+    // Guard: an empty cart has nothing to check out.
+    const cart = getCart();
+    if (cart.length === 0) {
+      window.location.href = 'cart.html';
+    }
+
+    function getAppliedPromo() {
+      try { return JSON.parse(sessionStorage.getItem(PROMO_KEY)); }
+      catch { return null; }
+    }
+
+    function computeTotals() {
+      const subtotal = getCartSubtotal();
+      const promo = getAppliedPromo();
+      const discount = promo ? subtotal * (promo.pct / 100) : 0;
+      const discounted = subtotal - discount;
+      const shipping = discounted >= SHIPPING_THRESHOLD ? 0 : SHIPPING_FLAT;
+      const tax = discounted * TAX_RATE;
+      const total = discounted + shipping + tax;
+      return { subtotal, discount, shipping, tax, total, promo };
+    }
+
+    function renderSummary() {
+      const items = getCart();
+      const totals = computeTotals();
+
+      document.getElementById('order-items-mini').innerHTML = items.map(item => `
+        <div class="order-item-mini">
+          <div class="order-item-mini-img">
+            <img src="${item.image}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:10px" onerror="this.style.background='#F5F5F7'">
+            <span class="order-item-mini-qty">${item.qty}</span>
+          </div>
+          <div>
+            <div class="order-item-mini-name">${item.name}</div>
+            <div class="order-item-mini-variant">${item.colorName} · Size ${item.size}</div>
+          </div>
+          <span class="order-item-mini-price">${formatPrice(item.price * item.qty)}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('checkout-summary-lines').innerHTML = `
+        <div class="summary-line"><span class="summary-line-label">Subtotal</span><span>${formatPrice(totals.subtotal)}</span></div>
+        ${totals.discount > 0 ? `<div class="summary-line"><span class="summary-line-label">Discount${totals.promo ? ' (' + totals.promo.code + ')' : ''}</span><span>−${formatPrice(totals.discount)}</span></div>` : ''}
+        <div class="summary-line"><span class="summary-line-label">Shipping</span><span>${totals.shipping === 0 ? '<span class="summary-free">FREE</span>' : formatPrice(totals.shipping)}</span></div>
+        <div class="summary-line"><span class="summary-line-label">Estimated Tax</span><span>${formatPrice(totals.tax)}</span></div>
+        <div class="summary-line total"><span class="summary-line-label">Total</span><span>${formatPrice(totals.total)}</span></div>
+      `;
+
+      document.getElementById('summary-toggle-total').textContent = formatPrice(totals.total);
+    }
+
+    function toggleSummary() {
+      document.getElementById('summary-body').classList.toggle('open');
+      document.getElementById('summary-toggle-chevron').style.transform =
+        document.getElementById('summary-body').classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+
+    /* ── Step navigation ── */
+    let currentStep = 1;
+
+    function setStepIndicator(step) {
+      document.querySelectorAll('.checkout-step').forEach(el => {
+        const n = +el.dataset.step;
+        el.classList.toggle('active', n === step);
+        el.classList.toggle('done', n < step);
+      });
+    }
+
+    function goToStep(step) {
+      if (step > currentStep) {
+        if (currentStep === 1 && !validateShipping()) return;
+        if (currentStep === 2 && !validatePayment()) return;
+      }
+      if (step === 3) renderReview();
+      currentStep = step;
+      document.querySelectorAll('.checkout-section').forEach(s => s.classList.remove('active'));
+      document.getElementById('section-' + step).classList.add('active');
+      setStepIndicator(step);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ── Validation ── */
+    function validateShipping() {
+      let ok = true;
+      const fields = [
+        ['ship-name', validateNotEmpty, 'Please enter your full name'],
+        ['ship-email', validateEmail, 'Please enter a valid email address'],
+        ['ship-address', validateNotEmpty, 'Please enter your street address'],
+        ['ship-city', validateNotEmpty, 'Please enter your city'],
+        ['ship-state', validateNotEmpty, 'Please enter your state'],
+        ['ship-zip', validateZip, 'Please enter a valid ZIP code'],
+      ];
+      fields.forEach(([id, fn, msg]) => {
+        const input = document.getElementById(id);
+        clearFieldError(input);
+        if (!fn(input.value)) { setFieldError(input, msg); ok = false; }
+      });
+      return ok;
+    }
+
+    function validatePayment() {
+      let ok = true;
+      const fields = [
+        ['pay-name', validateNotEmpty, 'Please enter the name on your card'],
+        ['pay-card', validateCard, 'Please enter a valid 16-digit card number'],
+        ['pay-expiry', validateExpiry, 'Please enter a valid expiry date (MM/YY)'],
+        ['pay-cvv', validateCVV, 'Please enter a valid CVV'],
+      ];
+      fields.forEach(([id, fn, msg]) => {
+        const input = document.getElementById(id);
+        clearFieldError(input);
+        if (!fn(input.value)) { setFieldError(input, msg); ok = false; }
+      });
+      return ok;
+    }
+
+    /* ── Review ── */
+    function renderReview() {
+      const totals = computeTotals();
+      const items = getCart();
+      const cardNum = document.getElementById('pay-card').value.replace(/\s/g, '');
+      const last4 = cardNum.slice(-4);
+
+      document.getElementById('review-content').innerHTML = `
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div style="background:var(--gray-light);border-radius:16px;padding:20px">
+            <div style="font-weight:800;margin-bottom:8px">Shipping To</div>
+            <div style="font-size:14px;color:var(--gray-dark);line-height:1.7">
+              ${document.getElementById('ship-name').value}<br>
+              ${document.getElementById('ship-address').value}<br>
+              ${document.getElementById('ship-city').value}, ${document.getElementById('ship-state').value} ${document.getElementById('ship-zip').value}<br>
+              ${document.getElementById('ship-email').value}
+            </div>
+          </div>
+          <div style="background:var(--gray-light);border-radius:16px;padding:20px">
+            <div style="font-weight:800;margin-bottom:8px">Payment</div>
+            <div style="font-size:14px;color:var(--gray-dark)">Card ending in ${last4 || '••••'}</div>
+          </div>
+          <div style="background:var(--gray-light);border-radius:16px;padding:20px">
+            <div style="font-weight:800;margin-bottom:12px">${items.reduce((s,i)=>s+i.qty,0)} Item${items.reduce((s,i)=>s+i.qty,0)!==1?'s':''}</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              ${items.map(i => `<div style="display:flex;justify-content:space-between;font-size:14px"><span>${i.name} (${i.colorName}, US ${i.size}) × ${i.qty}</span><span style="font-weight:700">${formatPrice(i.price * i.qty)}</span></div>`).join('')}
+            </div>
+          </div>
+          <div style="font-size:20px;font-weight:800;display:flex;justify-content:space-between;padding-top:8px;border-top:2px solid var(--gray-border)">
+            <span>Total</span><span>${formatPrice(totals.total)}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ── Place order ── */
+    function placeOrder() {
+      const btn = document.getElementById('place-order-btn');
+      btn.disabled = true;
+      btn.textContent = 'Placing Order…';
+
+      const totals = computeTotals();
+      const items = getCart();
+      const cardNum = document.getElementById('pay-card').value.replace(/\s/g, '');
+
+      const order = {
+        orderNumber: generateOrderNumber(),
+        date: new Date().toISOString(),
+        items,
+        totals,
+        shipping: {
+          name: document.getElementById('ship-name').value,
+          email: document.getElementById('ship-email').value,
+          address: document.getElementById('ship-address').value,
+          city: document.getElementById('ship-city').value,
+          state: document.getElementById('ship-state').value,
+          zip: document.getElementById('ship-zip').value,
+          phone: document.getElementById('ship-phone').value,
+        },
+        paymentLast4: cardNum.slice(-4),
+      };
+
+      setTimeout(() => {
+        saveOrder(order);
+        clearCart();
+        sessionStorage.removeItem(PROMO_KEY);
+        window.location.href = 'order-confirmation.html';
+      }, 700);
+    }
+
+    renderSummary();
+  </script>
+</body>
+</html>

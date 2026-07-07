@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGrad" cx="48%" cy="34%" r="80%">
+      <stop offset="0%" stop-color="#EFEAF5"/>
+      <stop offset="100%" stop-color="#F9F9FB"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14"/>
+    </filter>
+  </defs>
+  <rect width="800" height="800" fill="url(#bgGrad)"/>
+  <ellipse cx="416.0" cy="548.0" rx="272.0" ry="33.6" fill="#512B71" opacity="0.38" filter="url(#soft)"/>
+  <g transform="translate(40,200) scale(1.0)">
+<defs><clipPath id="clip9973"><path d="M58,318 C30,308 22,240 26,170 C29,118 36,166 60,114 C100,90 168,92 236,114 C296,132 350,68 430,96 C500,120 566,140 616,168 C656,190 682,220 690,256 C696,280 692,300 678,316 L58,318 Z"/></clipPath></defs>
+
+    <path d="M22,314
+             C22,306 30,300 42,300
+             L672,300
+             C692,300 706,308 708,320
+             C710,336 702,352 682,358
+             L48,358
+             C30,358 20,344 22,326 Z" fill="#FFFFFF"/>
+<rect x="34" y="298" width="640" height="9" rx="4.5" fill="#7DD3FC" opacity="0.9"/>
+<path d="M58,318 C30,308 22,240 26,170 C29,118 36,166 60,114 C100,90 168,92 236,114 C296,132 350,68 430,96 C500,120 566,140 616,168 C656,190 682,220 690,256 C696,280 692,300 678,316 L58,318 Z" fill="#E5E7EB"/>
+<g clip-path="url(#clip9973)">
+<ellipse cx="70" cy="246" rx="60" ry="130" fill="#D4B896" opacity="0.9"/>
+<ellipse cx="660" cy="256" rx="86" ry="92.0" fill="#7DD3FC" opacity="0.88"/>
+<path d="M100,100 Q300,109 560,100" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,120 Q300,111 560,120" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,140 Q300,149 560,140" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,160 Q300,151 560,160" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,180 Q300,189 560,180" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,200 Q300,191 560,200" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,220 Q300,229 560,220" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,240 Q300,231 560,240" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,260 Q300,269 560,260" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,280 Q300,271 560,280" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M100,300 Q300,309 560,300" stroke="#D4B896" stroke-width="2.5" fill="none" opacity="0.28"/>
+<path d="M250,86 C296,64 340,64 386,86 L378,212 C338,228 296,228 258,212 Z" fill="#D4B896" opacity="0.5"/>
+<path d="M248,110 Q318,97 388,110" stroke="#7DD3FC" stroke-width="3" fill="none" opacity="0.6"/>
+<path d="M248,138 Q318,125 388,138" stroke="#7DD3FC" stroke-width="3" fill="none" opacity="0.6"/>
+<path d="M248,166 Q318,153 388,166" stroke="#7DD3FC" stroke-width="3" fill="none" opacity="0.6"/>
+</g>
+  </g>
+</svg>

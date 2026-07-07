@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart — NEXORA</title>
+  <meta name="description" content="Review the items in your NEXORA cart, apply a promo code, and check out securely." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="cart-page">
+
+  <div id="nav-root"></div>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span class="sep">/</span>
+    <a href="plp.html">Shop</a><span class="sep">/</span>
+    <span class="current">Cart</span>
+  </div>
+
+  <div class="cart-main" id="cart-main">
+    <!-- Rendered by JS -->
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    document.getElementById('nav-root').innerHTML = renderNav('plp');
+    document.getElementById('footer-root').innerHTML = renderFooter();
+    initNav();
+
+    const SHIPPING_THRESHOLD = 75;
+    const SHIPPING_FLAT = 8.99;
+    const TAX_RATE = 0.08;
+    const PROMO_KEY = 'nexora_promo_v1';
+
+    function getAppliedPromo() {
+      try { return JSON.parse(sessionStorage.getItem(PROMO_KEY)); }
+      catch { return null; }
+    }
+    function setAppliedPromo(promo) {
+      if (promo) sessionStorage.setItem(PROMO_KEY, JSON.stringify(promo));
+      else sessionStorage.removeItem(PROMO_KEY);
+    }
+
+    function computeTotals(cart) {
+      const subtotal = cart.reduce((sum, c) => sum + c.price * c.qty, 0);
+      const promo = getAppliedPromo();
+      const discount = promo ? subtotal * (promo.pct / 100) : 0;
+      const discounted = subtotal - discount;
+      const shipping = cart.length === 0 ? 0 : (discounted >= SHIPPING_THRESHOLD ? 0 : SHIPPING_FLAT);
+      const tax = discounted * TAX_RATE;
+      const total = discounted + shipping + tax;
+      return { subtotal, discount, shipping, tax, total, promo };
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const main = document.getElementById('cart-main');
+
+      if (cart.length === 0) {
+        main.style.gridTemplateColumns = '1fr';
+        main.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">🛒</div>
+            <h3>Your cart is empty</h3>
+            <p>Looks like you haven't added anything yet. Let's fix that.</p>
+            <a href="plp.html" class="btn-primary" style="margin-top:8px">Browse All Shoes</a>
+          </div>`;
+        return;
+      }
+
+      main.style.gridTemplateColumns = '';
+      const totals = computeTotals(cart);
+
+      main.innerHTML = `
+        <div>
+          <h1 class="cart-heading">Your Cart</h1>
+          <p class="cart-subheading">${cart.reduce((s,c)=>s+c.qty,0)} item${cart.reduce((s,c)=>s+c.qty,0)!==1?'s':''} in your bag</p>
+
+          <div class="cart-items">
+            ${cart.map(item => `
+              <div class="cart-item" data-key="${item.key}">
+                <img src="${item.image}" alt="${item.name}" class="cart-item-img" onerror="this.style.background='#F5F5F7'">
+                <div class="cart-item-details">
+                  <span class="cart-item-category">${item.category}</span>
+                  <span class="cart-item-name">${item.name}</span>
+                  <span class="cart-item-variant">${item.colorName} · Size ${item.size}</span>
+                  <div class="cart-item-actions">
+                    <button class="cart-item-remove" onclick="handleRemove('${item.key}')" aria-label="Remove ${item.name} from cart">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                      Remove
+                    </button>
+                    <div class="qty-stepper">
+                      <button class="qty-btn" onclick="handleQty('${item.key}',${item.qty - 1})" aria-label="Decrease quantity">−</button>
+                      <span class="qty-num">${item.qty}</span>
+                      <button class="qty-btn" onclick="handleQty('${item.key}',${item.qty + 1})" aria-label="Increase quantity">+</button>
+                    </div>
+                  </div>
+                </div>
+                <span class="cart-item-price">${formatPrice(item.price * item.qty)}</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="cart-reassurance">
+            <div class="reassurance-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Free shipping over $75</div>
+            <div class="reassurance-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>30-day free returns</div>
+            <div class="reassurance-item"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Secure checkout</div>
+          </div>
+        </div>
+
+        <div class="order-summary">
+          <h2 class="order-summary-title">Order Summary</h2>
+
+          <form class="promo-form" id="promo-form" onsubmit="return handlePromoSubmit(event)">
+            <input type="text" class="promo-input" id="promo-input" placeholder="Promo code" value="${totals.promo ? totals.promo.code : ''}" ${totals.promo ? 'disabled' : ''} />
+            ${totals.promo
+              ? `<button type="button" class="promo-btn-apply" onclick="handlePromoRemove()">Remove</button>`
+              : `<button type="submit" class="promo-btn-apply">Apply</button>`}
+          </form>
+          <div id="promo-msg-wrap">
+            ${totals.promo ? `<div class="promo-msg success">"${totals.promo.code}" applied — ${totals.promo.pct}% off</div>` : ''}
+          </div>
+
+          <div class="summary-lines">
+            <div class="summary-line">
+              <span class="summary-line-label">Subtotal</span>
+              <span>${formatPrice(totals.subtotal)}</span>
+            </div>
+            ${totals.discount > 0 ? `
+            <div class="summary-line">
+              <span class="summary-line-label">Discount</span>
+              <span>−${formatPrice(totals.discount)}</span>
+            </div>` : ''}
+            <div class="summary-line">
+              <span class="summary-line-label">Shipping</span>
+              <span>${totals.shipping === 0 ? '<span class="summary-free">FREE</span>' : formatPrice(totals.shipping)}</span>
+            </div>
+            <div class="summary-line">
+              <span class="summary-line-label">Estimated Tax</span>
+              <span>${formatPrice(totals.tax)}</span>
+            </div>
+            <div class="summary-line total">
+              <span class="summary-line-label">Total</span>
+              <span>${formatPrice(totals.total)}</span>
+            </div>
+          </div>
+
+          <button class="btn-primary checkout-btn" onclick="window.location='checkout.html'">Proceed to Checkout</button>
+          <a href="plp.html" class="btn-outline" style="display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;text-align:center">Continue Shopping</a>
+        </div>
+      `;
+    }
+
+    function handleQty(key, qty) {
+      if (qty <= 0) { handleRemove(key); return; }
+      updateQty(key, qty);
+      renderCart();
+    }
+
+    function handleRemove(key) {
+      removeFromCart(key);
+      showToast('Item removed from cart');
+      renderCart();
+    }
+
+    function handlePromoSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('promo-input');
+      const code = input.value.trim();
+      const msgWrap = document.getElementById('promo-msg-wrap');
+      if (!code) return false;
+      const pct = applyPromo(code);
+      if (pct) {
+        setAppliedPromo({ code: code.toUpperCase(), pct });
+        showToast(`Promo "${code.toUpperCase()}" applied!`, 'success');
+        renderCart();
+      } else {
+        msgWrap.innerHTML = `<div class="promo-msg error">Invalid promo code</div>`;
+      }
+      return false;
+    }
+
+    function handlePromoRemove() {
+      setAppliedPromo(null);
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

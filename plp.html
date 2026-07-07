@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop All Shoes — NEXORA</title>
+  <meta name="description" content="Browse NEXORA's full catalog of premium running, street, and lifestyle shoes. Filter by category, price, size and color." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    body { background: var(--white); }
+    .mobile-filter-btn {
+      display: none;
+      align-items: center; gap: 8px;
+      padding: 9px 16px;
+      border: 1.5px solid var(--gray-border);
+      border-radius: var(--radius-pill);
+      background: var(--white);
+      font-size: 14px; font-weight: 600;
+      cursor: pointer;
+    }
+    .mobile-filter-btn svg { width:16px; height:16px; stroke:currentColor; fill:none; }
+    @media(max-width:768px){ .mobile-filter-btn{display:flex;} }
+    .sidebar-backdrop { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:299; }
+    .sidebar-backdrop.open { display:block; }
+  </style>
+</head>
+<body class="plp-page">
+
+  <div id="nav-root"></div>
+
+  <!-- PLP Hero -->
+  <div class="plp-hero">
+    <div class="plp-hero-text">
+      <h1>All<br>Shoes</h1>
+      <p>Performance meets style — find your perfect pair</p>
+    </div>
+    <div class="plp-hero-stats">
+      <div class="plp-stat"><div class="plp-stat-num">8+</div><div class="plp-stat-label">Styles</div></div>
+      <div class="plp-stat"><div class="plp-stat-num">3</div><div class="plp-stat-label">Categories</div></div>
+      <div class="plp-stat"><div class="plp-stat-num">4.8★</div><div class="plp-stat-label">Avg Rating</div></div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="plp-toolbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="mobile-filter-btn" id="open-filters-btn">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+        Filters
+      </button>
+      <span class="plp-count" id="result-count">Showing 8 products</span>
+    </div>
+    <div class="plp-toolbar-right">
+      <select class="plp-sort" id="sort-select" aria-label="Sort products">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Top Rated</option>
+        <option value="newest">Newest</option>
+      </select>
+      <div class="plp-view-toggle">
+        <button class="plp-view-btn active" id="grid-view-btn" title="Grid view" aria-label="Grid view">
+          <svg viewBox="0 0 24 24" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="plp-view-btn" id="list-view-btn" title="List view" aria-label="List view">
+          <svg viewBox="0 0 24 24" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active filter tags -->
+  <div class="active-filters" id="active-filters" style="display:none"></div>
+
+  <!-- Mobile backdrop -->
+  <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+
+  <!-- Layout -->
+  <div class="plp-layout">
+
+    <!-- Sidebar -->
+    <aside class="plp-sidebar" id="plp-sidebar" role="complementary" aria-label="Filters">
+      <div class="filter-header">
+        <span class="filter-title">Filters</span>
+        <button class="filter-clear" id="clear-all-btn">Clear All</button>
+      </div>
+
+      <!-- Category -->
+      <div class="filter-section" id="fs-category">
+        <div class="filter-section-header" data-section="category">
+          <span class="filter-section-label">Category</span>
+          <span class="filter-section-arrow">▼</span>
+        </div>
+        <div class="filter-section-body filter-checkboxes">
+          <label class="filter-checkbox-label"><input type="checkbox" name="category" value="Running"> Running (3)</label>
+          <label class="filter-checkbox-label"><input type="checkbox" name="category" value="Street"> Street (2)</label>
+          <label class="filter-checkbox-label"><input type="checkbox" name="category" value="Lifestyle"> Lifestyle (3)</label>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="filter-section" id="fs-price">
+        <div class="filter-section-header" data-section="price">
+          <span class="filter-section-label">Price</span>
+          <span class="filter-section-arrow">▼</span>
+        </div>
+        <div class="filter-section-body">
+          <div class="price-range-wrap">
+            <div class="price-range-labels">
+              <span id="price-min-label">$100</span>
+              <span id="price-max-label">$300</span>
+            </div>
+            <input type="range" id="price-max" min="100" max="300" value="300" step="5" aria-label="Maximum price" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Size -->
+      <div class="filter-section" id="fs-size">
+        <div class="filter-section-header" data-section="size">
+          <span class="filter-section-label">Size (US)</span>
+          <span class="filter-section-arrow">▼</span>
+        </div>
+        <div class="filter-section-body">
+          <div class="filter-sizes" id="size-chips">
+            <!-- rendered by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Color -->
+      <div class="filter-section" id="fs-color">
+        <div class="filter-section-header" data-section="color">
+          <span class="filter-section-label">Color</span>
+          <span class="filter-section-arrow">▼</span>
+        </div>
+        <div class="filter-section-body">
+          <div class="filter-colors" id="color-dots"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Grid -->
+    <main class="plp-grid-area">
+      <div class="plp-grid" id="product-grid"></div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state" style="display:none">
+        <div class="empty-state-icon">👟</div>
+        <h3>No products found</h3>
+        <p>Try adjusting your filters to find what you're looking for.</p>
+        <button class="btn-primary" onclick="clearAllFilters()">Clear Filters</button>
+      </div>
+    </main>
+  </div>
+
+  <div id="footer-root"></div>
+
+  <script src="assets/app.js"></script>
+  <script>
+    /* ── Init ── */
+    document.getElementById('nav-root').innerHTML = renderNav('plp');
+    document.getElementById('footer-root').innerHTML = renderFooter();
+    initNav();
+
+    /* ── Filter state ── */
+    let state = { categories: [], maxPrice: 300, sizes: [], colors: [], sort: 'default', view: 'grid', wishlistOnly: false };
+
+    /* ── Populate sizes & colors from data ── */
+    const allSizes = [...new Set(NEXORA_PRODUCTS.flatMap(p => p.sizes))].sort((a,b)=>a-b);
+    const allColors = {};
+    NEXORA_PRODUCTS.forEach(p => p.colors.forEach(c => { allColors[c.hex] = c.name; }));
+
+    document.getElementById('size-chips').innerHTML = allSizes.map(s =>
+      `<button class="size-chip" data-size="${s}" onclick="toggleSize(${s},this)">${s}</button>`
+    ).join('');
+
+    document.getElementById('color-dots').innerHTML = Object.entries(allColors).map(([hex, name]) =>
+      `<div class="color-dot" data-color="${hex}" style="background:${hex}" title="${name}" onclick="toggleColor('${hex}',this)" tabindex="0" role="button" aria-label="${name}" aria-pressed="false"></div>`
+    ).join('');
+
+    /* ── Read URL params on load ── */
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('category')) {
+      const cat = params.get('category');
+      state.categories = [cat];
+      document.querySelectorAll(`input[name="category"][value="${cat}"]`).forEach(cb => cb.checked = true);
+    }
+    if (window.location.hash === '#wishlist') {
+      state.wishlistOnly = true;
+      const heroText = document.querySelector('.plp-hero-text');
+      if (heroText) heroText.innerHTML = '<h1>My<br>Wishlist</h1><p>Everything you\'ve saved for later</p>';
+    }
+
+    /* ── Filter section collapse toggle ── */
+    document.querySelectorAll('.filter-section-header').forEach(h => {
+      h.addEventListener('click', () => {
+        h.closest('.filter-section').classList.toggle('collapsed');
+      });
+    });
+
+    /* ── Category filter ── */
+    document.querySelectorAll('input[name="category"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        state.categories = [...document.querySelectorAll('input[name="category"]:checked')].map(c => c.value);
+        renderGrid();
+      });
+    });
+
+    /* ── Price filter ── */
+    const priceSlider = document.getElementById('price-max');
+    priceSlider.addEventListener('input', () => {
+      state.maxPrice = +priceSlider.value;
+      document.getElementById('price-max-label').textContent = '$' + priceSlider.value;
+      renderGrid();
+    });
+
+    /* ── Size filter ── */
+    function toggleSize(size, btn) {
+      if (state.sizes.includes(size)) { state.sizes = state.sizes.filter(s => s !== size); btn.classList.remove('active'); }
+      else { state.sizes.push(size); btn.classList.add('active'); }
+      renderGrid();
+    }
+
+    /* ── Color filter ── */
+    function toggleColor(hex, dot) {
+      if (state.colors.includes(hex)) { state.colors = state.colors.filter(c => c !== hex); dot.classList.remove('active'); dot.setAttribute('aria-pressed','false'); }
+      else { state.colors.push(hex); dot.classList.add('active'); dot.setAttribute('aria-pressed','true'); }
+      renderGrid();
+    }
+
+    /* ── Sort ── */
+    document.getElementById('sort-select').addEventListener('change', e => {
+      state.sort = e.target.value;
+      renderGrid();
+    });
+
+    /* ── View toggle ── */
+    document.getElementById('grid-view-btn').addEventListener('click', () => {
+      state.view = 'grid';
+      document.getElementById('grid-view-btn').classList.add('active');
+      document.getElementById('list-view-btn').classList.remove('active');
+      renderGrid();
+    });
+    document.getElementById('list-view-btn').addEventListener('click', () => {
+      state.view = 'list';
+      document.getElementById('list-view-btn').classList.add('active');
+      document.getElementById('grid-view-btn').classList.remove('active');
+      renderGrid();
+    });
+
+    /* ── Clear all ── */
+    document.getElementById('clear-all-btn').addEventListener('click', clearAllFilters);
+    function clearAllFilters() {
+      state = { categories: [], maxPrice: 300, sizes: [], colors: [], sort: 'default', view: state.view };
+      document.querySelectorAll('input[name="category"]').forEach(cb => cb.checked = false);
+      priceSlider.value = 300;
+      document.getElementById('price-max-label').textContent = '$300';
+      document.querySelectorAll('.size-chip').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.color-dot').forEach(d => { d.classList.remove('active'); d.setAttribute('aria-pressed','false'); });
+      renderGrid();
+    }
+
+    /* ── Mobile sidebar ── */
+    document.getElementById('open-filters-btn').addEventListener('click', () => {
+      document.getElementById('plp-sidebar').classList.add('open');
+      document.getElementById('sidebar-backdrop').classList.add('open');
+    });
+    document.getElementById('sidebar-backdrop').addEventListener('click', () => {
+      document.getElementById('plp-sidebar').classList.remove('open');
+      document.getElementById('sidebar-backdrop').classList.remove('open');
+    });
+
+    /* ── Filter + sort ── */
+    function getFiltered() {
+      let products = [...NEXORA_PRODUCTS];
+      if (state.wishlistOnly) products = products.filter(p => isWishlisted(p.id));
+      if (state.categories.length) products = products.filter(p => state.categories.includes(p.category));
+      products = products.filter(p => p.price <= state.maxPrice);
+      if (state.sizes.length) products = products.filter(p => state.sizes.some(s => p.sizes.includes(s)));
+      if (state.colors.length) products = products.filter(p => p.colors.some(c => state.colors.includes(c.hex)));
+      switch(state.sort) {
+        case 'price-asc': products.sort((a,b) => a.price - b.price); break;
+        case 'price-desc': products.sort((a,b) => b.price - a.price); break;
+        case 'rating': products.sort((a,b) => b.rating - a.rating); break;
+      }
+      return products;
+    }
+
+    /* ── Active filter tags ── */
+    function renderActiveTags(products) {
+      const tags = [];
+      if (state.wishlistOnly) tags.push({label: 'Wishlist', clear: () => {
+        state.wishlistOnly = false;
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+        renderGrid();
+      }});
+      state.categories.forEach(c => tags.push({label: c, clear: () => {
+        state.categories = state.categories.filter(x=>x!==c);
+        document.querySelector(`input[name="category"][value="${c}"]`).checked = false;
+        renderGrid();
+      }}));
+      if (state.maxPrice < 300) tags.push({label: `Under $${state.maxPrice}`, clear: () => {
+        state.maxPrice = 300; priceSlider.value = 300;
+        document.getElementById('price-max-label').textContent = '$300';
+        renderGrid();
+      }});
+      state.sizes.forEach(s => tags.push({label: `Size ${s}`, clear: () => {
+        state.sizes = state.sizes.filter(x=>x!==s);
+        document.querySelector(`.size-chip[data-size="${s}"]`).classList.remove('active');
+        renderGrid();
+      }}));
+
+      const wrap = document.getElementById('active-filters');
+      if (tags.length === 0) { wrap.style.display = 'none'; return; }
+      wrap.style.display = 'flex';
+      wrap.innerHTML = tags.map((t,i) => `
+        <div class="filter-tag">${t.label}<button class="filter-tag-remove" aria-label="Remove ${t.label} filter" data-index="${i}">×</button></div>
+      `).join('');
+      wrap.querySelectorAll('.filter-tag-remove').forEach((btn,i) => {
+        btn.addEventListener('click', () => tags[i].clear());
+      });
+    }
+
+    /* ── Render grid ── */
+    function renderGrid() {
+      const products = getFiltered();
+      renderActiveTags(products);
+      document.getElementById('result-count').textContent = `Showing ${products.length} product${products.length!==1?'s':''}`;
+
+      const grid = document.getElementById('product-grid');
+      const empty = document.getElementById('empty-state');
+
+      if (products.length === 0) {
+        grid.innerHTML = '';
+        empty.style.display = 'flex';
+        return;
+      }
+      empty.style.display = 'none';
+      grid.className = 'plp-grid' + (state.view === 'list' ? ' list-view' : '');
+      grid.innerHTML = products.map(p => renderProductCard(p)).join('');
+    }
+
+    renderGrid();
+  </script>
+</body>
+</html>
